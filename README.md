@@ -21,12 +21,3 @@ Développer 3 programmes :
  3. **[Android](https://github.com/ThibaudAV/VoiTux/tree/master/Android) :** Une appli qui permet de visualiser la caméra et de commander la voiture
 
 
-##1. Raspberry Pi
-
-
-##2. PC (Ubuntu) :
-
-
-##3. Android :
-
-
