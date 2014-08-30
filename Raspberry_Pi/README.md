@@ -26,11 +26,11 @@ Pour récupérer la vidéo j'utilise `raspivid`
 Exemple de commande : `raspivid -t 0 -w 1280 -h 720 -fps 25 -b 2500000 -p 0,0,640,480 -o -` 
 
 Autres valeurs :
-	- SD Low: -w 480 -h 260 -fps 25 -b  800000
-	- SD Medium: -w 640 -h 360 -fps 25 -b  1200000
-	- SD High: -w 960 -h 540 -fps 25 -b  1800000
-	- HD Ready: -w 1280 -h 720 -fps 25 -b  2500000
-	- Full HD: -w 1920 -h 1080 -fps 25 -b  5000000
+- SD Low: -w 480 -h 260 -fps 25 -b  800000
+- SD Medium: -w 640 -h 360 -fps 25 -b  1200000
+- SD High: -w 960 -h 540 -fps 25 -b  1800000
+- HD Ready: -w 1280 -h 720 -fps 25 -b  2500000
+- Full HD: -w 1920 -h 1080 -fps 25 -b  5000000
 
 Ensuite le flux vidéo est transmis par GStreamer qui va s'occuper du streaming vers notre machine cible (celle ou l'on souhaite voir la vidéo).
 
