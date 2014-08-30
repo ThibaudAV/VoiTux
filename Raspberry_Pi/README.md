@@ -38,6 +38,8 @@ Pour toute cette partie il y a des meilleures explications ici :
 Sources : [blog.nicolargo.com/2013/05/streaming-depuis-la-raspberry-camera.html](http://blog.nicolargo.com/2013/05/streaming-depuis-la-raspberry-camera.html)
 
 Commande complète : `raspivid -t 0 -w 1280 -h 720 -fps 25 -b 2500000 -p 0,0,640,480 -o - | gst-launch -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=192.168.1.48 port=5000`
+
 Host : `192.168.1.48` (exemple) c'est l’adresse ip du raspberry 
+
 Port : `5000` (exemple)  port utilisé pour la communication. 
     
