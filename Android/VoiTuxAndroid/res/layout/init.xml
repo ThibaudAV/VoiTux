@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="1"
+        android:padding="20dp" >
+
+        <Space />
+
+        <Space />
+        <LinearLayout android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/TextViewCommande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commande :"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP Adress :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/ipAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text"
+                android:text="192.168.1.xxx" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Port :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.92"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:text="8881" />
+        </LinearLayout>
+        
+        <LinearLayout android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/TextViewCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camera :"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        
+        <LinearLayout android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/textViewIpCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP Adress :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/ipAdressCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text"
+                android:text="192.168.1.47" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal" >
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Port:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/portCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.92"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:text="5000" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="right" >
+
+            <Button
+                android:id="@+id/initConnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ok" />
+        </RelativeLayout>
+
+    </GridLayout>
+
+</LinearLayout>
