@@ -1,9 +1,9 @@
 VoiTux
 ===================
-**Bouh, !** 
-Bienvenu, sur mon projet de voiture télécommander avec un Raspberry Pi.
+**Bouh !** 
+Bienvenue sur mon projet de voiture télécommandée avec un Raspberry Pi.
 Je réalise ce projet pour le fun et le divertissement.
-Je vais mettre ici mes sources ainsi que mes notes personnel. C'est pourquoi je m'excuse d'avance pour les fautes d'orthographe et phrase incompréhensible. 
+Je vais mettre ici mes sources ainsi que mes notes personnelles. C'est pourquoi je m'excuse d'avance pour les fautes d'orthographe et phrases incompréhensibles. 
 
 
 ##Matériel 

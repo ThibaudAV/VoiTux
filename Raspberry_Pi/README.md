@@ -10,7 +10,7 @@ Exemple de commande : `echo 1=150 > /dev/servoblaster`
 `150` est un chiffre compris par défaut entre **50** et **250** qui correspond à **0%** et **100%** de la rotation du servomoteur. 
 
 #### - Communication avec des socket
-Le serveur est sur le raspberry et les données reçus son sous forme XML.
+Le serveur est sur le raspberry et les données reçus sont sous forme XML.
 Par exemple : `<servo id='X'>0</servo><servo id='Y'>-10</servo>`
 Ici **X** et **Y** sont les noms de mes servomoteurs. **0** et **-10** sont des exemples de *commande*.
 Les *commandes* envoyées sont comprises entre `[-10,10]`
@@ -32,7 +32,7 @@ Autres valeurs :
 - HD Ready: -w 1280 -h 720 -fps 25 -b  2500000
 - Full HD: -w 1920 -h 1080 -fps 25 -b  5000000
 
-Ensuite le flux vidéo est transmis par GStreamer qui va s'occuper du streaming vers notre machine cible (celle ou l'on souhaite voir la vidéo).
+Ensuite le flux vidéo est transmis par GStreamer qui va s'occuper du streaming vers notre machine cible (celle où l'on souhaite voir la vidéo).
 
 Pour toute cette partie il y a des meilleures explications ici : 
 Sources : [blog.nicolargo.com/2013/05/streaming-depuis-la-raspberry-camera.html](http://blog.nicolargo.com/2013/05/streaming-depuis-la-raspberry-camera.html)
