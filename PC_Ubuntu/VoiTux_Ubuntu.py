@@ -9,8 +9,14 @@ from gi.repository import Gst, GObject, Gtk, Gdk
 # Needed for window.get_xid(), xvimagesink.set_window_handle(), respectively:
 from gi.repository import GdkX11, GstVideo
 
+# Camera :
 HOST_camera = "192.168.0.13"
 PORT_camera = 5000
+
+# Direction, Commande :
+HOST_socket = "192.168.0.13"
+PORT_socket = 8881
+
 
 class GTK_Main(object):
 
@@ -21,7 +27,7 @@ class GTK_Main(object):
 
         try:
             self.clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.clientsocket.connect(('192.168.0.13', 8881))
+            self.clientsocket.connect((HOST_socket, PORT_socket))
         except Exception, e:
             print e
         
