@@ -72,20 +72,20 @@ Pour réaliser le serveur j'ai utilisé le Python car il est fun a utiliser ( pa
 
 
 Installation et fonctionnement : 
-**[Serveur VoiTux](https://github.com/ThibaudAV/VoiTux/tree/master/Raspberry_Pi)**
+**[Serveur VoiTux](Android VoiTux)**
 
 
 ### L'application Android : VoiTux
 Développé avec Android Studio et un Galaxy S5. 
 
 Installation et fonctionnement : 
-**[Android VoiTux](https://github.com/ThibaudAV/VoiTux/tree/master/Android)**
+**[Android VoiTux](Serveur VoiTux)**
 
 ### L'application desktop Python GTK
 Application très simple permettant de contrôler la voiture via un pc. Utilisé pour remplacer l'application Android pendant les dev ou pour faire des réglages.
 Elle a aussi permis d'effectuer des test vidéo afin de trouver le meilleur compromis
 
-**[Python GTK Dev](https://github.com/ThibaudAV/VoiTux/tree/master/PC_Ubuntu)**
+**[Python GTK Dev](App Python GTK Dev)**
 
 
 ##Contact

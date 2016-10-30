@@ -24,7 +24,7 @@ Pour `VoiTux_v6.py`  Voici la configuration par défaut:
 
 Lancer le serveur sur la voiture. `sudo python VoiTux_v6.py`
 
-> Voir la page consacré au serveur sur le Raspberry [VoiTux Raspberry](TODOTODO)  
+> Voir la page consacré au serveur sur le Raspberry [VoiTux Raspberry](../Serveur VoiTux)  
 
 Exécuter la connexion avec le bouton `Play`  
 Si tout se passe bien vous devriez avoir le contrôle de la voiture :)
