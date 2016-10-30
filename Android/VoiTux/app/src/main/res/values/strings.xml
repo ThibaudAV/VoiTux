@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">VoiTux</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_play">Play</string>
+    <string name="button_stop">Stop</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="new_con_nom">Nom de la connexion</string>
+    <string name="new_con_videoIp">Adresse Ip</string>
+    <string name="new_con_port">Port</string>
+    <string name="new_con_valider">Valider</string>
+    <string name="err_msg_port">[ex:5000]</string>
+    <string name="err_msg_ip">[ex: 192.168.0.10]</string>
+    <string name="err_msg_isEmpty">Ne peut pas etre vide</string>
+    <string name="video_pipeline_defaut">tcpclientsrc host=%1$s ! port=%2$s ! gdpdepay ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false</string>
+    <string name="indisponible">Indisponible</string>
+
+
+    <string-array name="GS_Piepeline" formatted="false">
+        <item>udpsrc port=%videoPort% caps=\"application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96\" ! queue ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false</item>
+        <item>tcpclientsrc host=%ip% port=%videoPort% ! gdpdepay ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false</item>
+    </string-array>
+
+</resources>
