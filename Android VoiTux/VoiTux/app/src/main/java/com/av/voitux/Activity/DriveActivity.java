@@ -89,6 +89,35 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
             Log.i ("GStreamer", "Erreur: Pas de connexion");
             finish();
         }
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(R.layout.activity_drive);
+
+        // Init de GStreamer
+        initGStreamer(savedInstanceState);
+
+        // Init des commandes
+        initCommande();
+
+    }
+
+
+    private void  initGStreamer(Bundle savedInstanceState){
+
+        ImageButton btn_play = (ImageButton) this.findViewById(R.id.button_play);
+        ImageButton btn_pause = (ImageButton) this.findViewById(R.id.button_stop);
+        SurfaceView sv = (SurfaceView) this.findViewById(R.id.gs_surface_video);
+
+        // si la video est désactivée on n'init pas GS
+        if(!connexion.isVideoAcive()) {
+            btn_play.setVisibility(View.GONE);
+            btn_pause.setVisibility(View.GONE);
+            sv.setVisibility(View.GONE);
+            return;
+        }
+
         // Initialize GStreamer and warn if it fails
         try {
             GStreamer.init(this);
@@ -98,15 +127,7 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
             return;
         }
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        setContentView(R.layout.activity_drive);
-
         // Init Play et pause btn
-        ImageButton btn_play = (ImageButton) this.findViewById(R.id.button_play);
-        ImageButton btn_pause = (ImageButton) this.findViewById(R.id.button_stop);
-        SurfaceView sv = (SurfaceView) this.findViewById(R.id.gs_surface_video);
 
         btn_play.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -143,24 +164,22 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
         // Ajout les infos video dans la bule d'info
         TextView ipVideo = (TextView)findViewById(R.id.ipAdressCamera);
         ipVideo.setText(connexion.getIp()+":"+ connexion.getVideoPort() );
-
-        // Init des commandes
-        initCommande();
-
     }
 
 
     private void initCommande(){
 
         TextView ipCommande = (TextView)findViewById(R.id.ipAdress);
+        joystickRight = (JoystickView)findViewById(R.id.joystick_right);
+        joystickLeft = (JoystickView)findViewById(R.id.joystick_left);
         tv_drive_com_x = (TextView)findViewById(R.id.tv_drive_com_x);
         tv_drive_com_y = (TextView)findViewById(R.id.tv_drive_com_y);
 
         // si les commandes sont désactivées on ne les affiches pas
         if(!connexion.isCommandeActive()) {
             ipCommande.setText("");
-            tv_drive_com_x.setVisibility(View.GONE);
-            tv_drive_com_y.setVisibility(View.GONE);
+            joystickRight.setVisibility(View.GONE);
+            joystickLeft.setVisibility(View.GONE);
             return;
         }
 
@@ -173,11 +192,9 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
 
         // Init des joysticks
         // - Horisontal
-        joystickRight = (JoystickView)findViewById(R.id.joystick_right);
         joystickRight.contrainteType = "Horisontal";
         joystickRight.setOnJostickMovedListener(joystickRightListener);
         // - Vertical
-        joystickLeft = (JoystickView)findViewById(R.id.joystick_left);
         joystickLeft.contrainteType = "Vertical";
         joystickLeft.setOnJostickMovedListener(joystickLeftListener);
     }
