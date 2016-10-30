@@ -10,11 +10,11 @@ from gi.repository import Gst, GObject, Gtk, Gdk
 from gi.repository import GdkX11, GstVideo
 
 # Camera :
-HOST_camera = "192.168.0.13"
+HOST_camera = "192.168.0.19"
 PORT_camera = 5000
 
 # Direction, Commande :
-HOST_socket = "192.168.0.13"
+HOST_socket = "192.168.0.19"
 PORT_socket = 8881
 
 
@@ -57,10 +57,10 @@ class GTK_Main(object):
         ### Paramètre
         
         ## Variable par defaut des paramétres
-        self.maxValueDirection = 250
-        self.minValueDirection = 50
-        self.maxValueMAA = 250
-        self.minValueMAA = 50
+        self.maxValueDirection = 200
+        self.minValueDirection = 100
+        self.maxValueMAA = 50
+        self.minValueMAA = 20
         # Init Paramètre : On ecrase les variables par defaut des paramétre si elle sont enregistées
         try:
             pass
@@ -101,14 +101,14 @@ class GTK_Main(object):
         self.scaleMaxDirection.connect("value-changed", self.setScaleMaxDirection)
 
         self.scaleMaxMAA = self.interface.get_object("maxMAA")
-        self.scaleMaxMAA.set_range(50, 250)
+        self.scaleMaxMAA.set_range(-250, 250)
         self.scaleMaxMAA.set_increments(1, 10)
         self.scaleMaxMAA.set_digits(0)
         self.scaleMaxMAA.set_value(self.maxValueMAA)
         self.scaleMaxMAA.connect("value-changed", self.setScaleMaxMAA)
         
         self.scaleMinMAA = self.interface.get_object("minMAA")
-        self.scaleMinMAA.set_range(50, 250)
+        self.scaleMinMAA.set_range(-250, 250)
         self.scaleMinMAA.set_increments(1, 10)
         self.scaleMinMAA.set_digits(0)
         self.scaleMinMAA.set_value(self.minValueMAA)
@@ -165,9 +165,14 @@ class GTK_Main(object):
         # 
         # Sur le Raspberry : raspivid -t 0 -w 1280 -h 720 -fps 25 -b 2500000 -p 0,0,640,480 -o - | gst-launch -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=192.168.1.48 port=5000
         # 
-        self.player = Gst.parse_launch ("tcpclientsrc host=%s port=%i ! gdpdepay ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"%(HOST_camera,PORT_camera))
+        # self.player = Gst.parse_launch ("tcpclientsrc host=%s port=%i ! gdpdepay ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"%(HOST_camera,PORT_camera))
         
-
+        # Solution 4 En UDP 
+        # 
+        # Sur le Raspberry : raspivid -t 0 -w 1280 -h 720 -fps 25 -b 2500000 -p 0,0,640,480 -o - | gst-launch -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=192.168.1.48 port=5000
+        # 
+        self.player = Gst.parse_launch ("udpsrc port=%i caps="application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! queue ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"%(PORT_camera))
+        
 
         bus = self.player.get_bus()
         bus.add_signal_watch()
@@ -314,6 +319,8 @@ class GTK_Main(object):
         self.windowParametre.show()
     def on_closeParametre_clicked(self, widget):
         self.windowParametre.hide()
+
+
 
 GObject.threads_init()
 Gst.init(None)        

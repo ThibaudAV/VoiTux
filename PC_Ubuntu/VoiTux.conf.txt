@@ -1,5 +1,0 @@
-maxValueDirection=180
-minValueDirection=104
-maxValueMAA=187
-minValueMAA=50
-50

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <!--  Nom de la connexion -->
+        <android.support.v7.widget.CardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_nc_nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/et_nc_nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:hint="@string/new_con_nom"
+                    android:maxLines="1" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_nc_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_nc_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/new_con_videoIp"
+                    android:inputType="phone"
+                    android:text="192.168.0.19"
+                    android:digits="0123456789."/>
+            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- Card Video settings -->
+        <android.support.v7.widget.CardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:id="@+id/ll_nc_video">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_nc_video_active"
+                        android:checked="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:text="Video GStreamer"
+                        android:padding="10dp"
+                        android:id="@+id/textView" />
+                </LinearLayout>
+
+
+                <!--Mode simple ou avancé -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="2dp"
+                    android:id="@+id/ll_nc_video_mode">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mode"
+                        android:layout_marginRight="12dp" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_nc_video_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_nc_video_simple"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Simple"
+                            android:checked="false" />
+
+                        <RadioButton
+                            android:id="@+id/rb_nc_video_avance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Avancé"
+                            android:checked="false" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+                <!-- Mode Simple -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/ll_nc_video_adresse">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_nc_video_port"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_nc_video_port"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/new_con_port"
+                            android:inputType="phone"
+                            android:digits="0123456789."/>
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <Spinner
+                        android:id="@+id/spi_nc_select_pipeline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/GS_Piepeline"
+                        android:ellipsize="marquee"
+                        android:spinnerMode="dropdown" />
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_nc_video_pipeline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/et_nc_video_pipeline"
+                        android:layout_gravity="center_horizontal"
+                        android:enabled="true"
+                        android:hint="Pipeline GStreamer"
+                        android:text="@string/video_pipeline_defaut"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- Carde Commande Settings -->
+        <android.support.v7.widget.CardView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/cb_nc_com_active"
+                        android:checked="false" />
+
+                    <TextView
+                        android:id="@+id/title_comande"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:text="Commande Joystick"
+                        android:padding="10dp" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rl_nc_com_adresse">
+
+
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_nc_com_port"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:id="@+id/et_nc_com_port"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/new_con_port"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:digits="0123456789."
+                            android:text="5000" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <Button android:id="@+id/btn_new_con"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/til_nc_com_ip"
+            android:layout_marginTop="10dp"
+            android:text="@string/new_con_valider" />
+
+    </LinearLayout>
+</ScrollView>

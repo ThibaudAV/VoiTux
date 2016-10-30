@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    android:id="@+id/cl_drive">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:columnCount="1"
+        android:gravity="right" >
+
+        <com.av.voitux.voituxandroid.GStreamerSurfaceView
+            android:id="@+id/gs_surface_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <com.av.voitux.Joystick.JoystickView
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="-50dp"
+            android:id="@+id/joystick_left" />
+
+        <com.av.voitux.Joystick.JoystickView
+            android:id="@+id/joystick_right"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-50dp"
+            android:layout_marginRight="30dp" />
+
+        <TableLayout
+            android:id="@+id/TableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#68ffffff"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TableRow  >
+
+                <TextView
+                    android:id="@+id/TextLabelIPCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IP Camera :"
+                    android:textColor="#000"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/ipAdressCamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/indisponible" />
+
+            </TableRow>
+
+            <TableRow  >
+
+                <TextView
+                    android:id="@+id/TextLabelIP"
+                    android:layout_width="50dip"
+                    android:layout_height="wrap_content"
+                    android:text="IP Comm. :"
+                    android:textColor="#000"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/ipAdress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/indisponible" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/TextLabelX"
+                    android:layout_width="50dip"
+                    android:layout_height="wrap_content"
+                    android:text="X :"
+                    android:textColor="#000"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/tv_drive_com_x"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/TextLabelY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Y :"
+                    android:textColor="#000"
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/tv_drive_com_y"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000" />
+
+            </TableRow>
+        </TableLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:id="@+id/button_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_play"
+            android:src="@android:drawable/ic_media_play"
+            android:text="@string/button_play" />
+
+        <ImageButton
+            android:id="@+id/button_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_play"
+            android:contentDescription="@string/button_stop"
+            android:src="@android:drawable/ic_media_pause"
+            android:text="@string/button_stop" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

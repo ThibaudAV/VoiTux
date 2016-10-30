@@ -2,6 +2,7 @@ PC (Ubuntu)
 =========
 
 
+
 Partie client qui permet de contrôler la voiture à partir d'un ordinateur.
 J'ai développé et testé ce script sous Ubuntu (Linux). Le scripte est en Python et à une interface graphique GTK (`VoiTux_Ubuntu Glade`).
 
