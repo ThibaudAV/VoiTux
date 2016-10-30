@@ -3,7 +3,7 @@ Android
 
 L'application Android **VoiTux** permet de se connecter au serveur lancé sur la voiture. Une fois connectée il est possible de contrôler la voiture grâce à 2 Joysticks et de visualiser la vidéo en Streaming. 
 
-Installer l'apk : [VoiTux-app-release.apk](VoiTux-app-release.apk)
+Installer l'apk : [VoiTux-app-release.apk](VoiTux/VoiTux-app-release.apk)
 
 > L'apk est généré pour les téléphones ARM. Comme j'utilise un galaxy s5. 
 
