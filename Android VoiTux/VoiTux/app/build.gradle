@@ -44,12 +44,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix 'VoiTux'
         }
         debug {
             jniDebuggable false
+            applicationIdSuffix 'VoiTux'
         }
     }
     // Before compiling our app, prepare NDK code
