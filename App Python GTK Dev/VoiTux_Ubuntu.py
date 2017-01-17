@@ -4,17 +4,19 @@
 import sys, os, socket
 import gi
 gi.require_version('Gst', '1.0')
+gi.require_version('Gtk', '3.0')
+gi.require_version('GstVideo', '1.0')
 from gi.repository import Gst, GObject, Gtk, Gdk
 
 # Needed for window.get_xid(), xvimagesink.set_window_handle(), respectively:
 from gi.repository import GdkX11, GstVideo
 
 # Camera :
-HOST_camera = "192.168.0.19"
+HOST_camera = "192.168.43.2"
 PORT_camera = 5000
 
 # Direction, Commande :
-HOST_socket = "192.168.0.19"
+HOST_socket = "192.168.43.2"
 PORT_socket = 8881
 
 
@@ -57,10 +59,10 @@ class GTK_Main(object):
         ### Paramètre
         
         ## Variable par defaut des paramétres
-        self.maxValueDirection = 200
-        self.minValueDirection = 100
-        self.maxValueMAA = 50
-        self.minValueMAA = 20
+        self.maxValueDirection = 1300
+        self.minValueDirection = 1770
+        self.maxValueMAA = 65
+        self.minValueMAA = 60
         # Init Paramètre : On ecrase les variables par defaut des paramétre si elle sont enregistées
         try:
             pass
@@ -171,7 +173,7 @@ class GTK_Main(object):
         # 
         # Sur le Raspberry : raspivid -t 0 -w 1280 -h 720 -fps 25 -b 2500000 -p 0,0,640,480 -o - | gst-launch -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=192.168.1.48 port=5000
         # 
-        self.player = Gst.parse_launch ("udpsrc port=%i caps="application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! queue ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"%(PORT_camera))
+        self.player = Gst.parse_launch ("udpsrc port=%i caps=\"application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96\" ! queue ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"%(PORT_camera))
         
 
         bus = self.player.get_bus()

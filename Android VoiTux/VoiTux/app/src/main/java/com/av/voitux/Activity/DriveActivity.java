@@ -3,6 +3,7 @@ package com.av.voitux.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -245,30 +247,6 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
         }
     }
 
-    private void sendMessage(String message) {
-
-        // ne pas envoyer 2 fois le meme message ;)
-        if(!lastMessageSend.equals(message)) {
-            lastMessageSend = message;
-
-            try {
-                // Create PrintWriter object for sending messages to server.
-                out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-
-                if (!out.checkError()) {
-                    out.println(message);
-                    out.flush();
-                    Log.d(TAG, "Sent Message: " + message);
-                } else {
-                    Log.d(TAG, "Error Sent Message: " + message);
-                }
-
-            } catch (Exception e) {
-                Log.d(TAG, "Error", e);
-            }
-
-        }
-    }
 
     protected void onSaveInstanceState (Bundle outState) {
         Log.d ("GStreamer", "Saving state, playing:" + is_playing_desired);
@@ -342,27 +320,61 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
         }
     }
 
-    public void evoieCommande(String attr, String value) {
-        sendMessage("<servo id='"+ attr +"'>"+ value +"</servo>");
+   // Envoi de la commande par socket
+    class EnvoieCommandeTask extends AsyncTask<Object, Void, Void> {
+
+        protected Void doInBackground(Object... params) {
+            try {
+                String message = "<servo id='"+ params[0] +"'>"+ params[1] +"</servo>";
+
+                // ne pas envoyer 2 fois le meme message ;)
+                if(!lastMessageSend.equals(message)) {
+                    lastMessageSend = message;
+
+                    try {
+                        // Create PrintWriter object for sending messages to server.
+                        out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+
+                        if (!out.checkError()) {
+                            out.println(message);
+                            out.flush();
+                            Log.d(TAG, "Sent Message: " + message);
+                        } else {
+                            Log.d(TAG, "Error Sent Message: " + message);
+                        }
+
+                    } catch (Exception e) {
+                        Log.d(TAG, "Error", e);
+                    }
+
+                }
+            } catch (Exception e) {
+                Log.d("VoiTux", "Err EnvoieCommandeTask :"+e);
+
+            }
+            return null;
+        }
+
     }
 
+    // Récupère la valeur des Joystick et fait appel à une tache asynchrone pour l'envoyer
     private JoystickMovedListener joystickRightListener = new JoystickMovedListener() {
 
         @Override
         public void OnMoved(int pan, int tilt, int angle) {
             tv_drive_com_x.setText(Integer.toString(pan));
-            evoieCommande("X",Integer.toString(pan));
+            new EnvoieCommandeTask().execute("X",Integer.toString(pan));
         }
 
         @Override
         public void OnReleased() {
             tv_drive_com_x.setText("released");
-            evoieCommande("X","released");
+            new EnvoieCommandeTask().execute("X","released");
         }
 
         public void OnReturnedToCenter() {
             tv_drive_com_x.setText("stopped");
-            evoieCommande("X","stopped");
+            new EnvoieCommandeTask().execute("X","stopped");
         };
     };
     private JoystickMovedListener joystickLeftListener = new JoystickMovedListener() {
@@ -370,18 +382,18 @@ public class DriveActivity extends Activity implements SurfaceHolder.Callback {
         @Override
         public void OnMoved(int pan, int tilt, int angle) {
             tv_drive_com_y.setText(Integer.toString(tilt));
-            evoieCommande("Y",Integer.toString(tilt));
+            new EnvoieCommandeTask().execute("Y",Integer.toString(tilt));
         }
 
         @Override
         public void OnReleased() {
             tv_drive_com_y.setText("released");
-            evoieCommande("Y","released");
+            new EnvoieCommandeTask().execute("Y","released");
         }
 
         public void OnReturnedToCenter() {
             tv_drive_com_y.setText("stopped");
-            evoieCommande("Y","stopped");
+            new EnvoieCommandeTask().execute("Y","stopped");
         };
     };
 

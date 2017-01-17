@@ -73,10 +73,8 @@ class Motor(object):
    SENS_ARIERRE = "Arriere"
    SENS_STOP = "Stop"
 
-   def __init__(self, motorPin_avant, motorPin_arriere, vitesseMax_avant, vitesseMax_arriere):
+   def __init__(self, motorPin_avant, motorPin_arriere):
       try:
-         self.vitesseMax_avant = vitesseMax_avant
-         self.vitesseMax_arriere = vitesseMax_arriere
          # Init GPIO 
          GPIO.setup(motorPin_avant, GPIO.OUT, initial=GPIO.HIGH)
          GPIO.setup(motorPin_arriere, GPIO.OUT, initial=GPIO.LOW)
@@ -166,6 +164,7 @@ class VoiTuxServer(object):
          print "VoiTux"
          # Init GPIO mode 
          GPIO.setmode(GPIO.BOARD)
+         os.system("sudo killall pigpiod")
          os.system("sudo pigpiod")
 
          # Socket Server 
@@ -182,10 +181,10 @@ class VoiTuxServer(object):
 
          # Vitesse : Avant/Ariere avec moteur 
          self.vitesseMax_avant       = 65   # Valeur min de la marche arriere
-         self.vitesseMax_arriere     = 60   # Valeur max de la marche avant 
+         self.vitesseMax_arriere     = 70   # Valeur max de la marche avant 
          motorPin_avant        = 13     # = GPIO 27 = PIN 13
          motorPin_arriere      = 15     # = GPIO 22 = PIN 15
-         self.vitesse = Motor(motorPin_avant, motorPin_arriere, self.vitesseMax_avant, self.vitesseMax_arriere)
+         self.vitesse = Motor(motorPin_avant, motorPin_arriere)
 
          # Android 
          self.Android_X_MiniWidth = -10  # Valeur min a gauche 
@@ -222,12 +221,12 @@ class VoiTuxServer(object):
             
             if refServo == "Y":  # Vitesse (Avant/Arriere)
 
-               if(int(value) > 0): # Marche avant 
-                  position =  eqScaling2Intervalle(int(value), 0, self.vitesseMax_avant, self.Android_Y_MiniWidth, self.Android_Y_MaxWidth)
+               if(float(value) > 0): # Marche avant 
+                  position =  eqScaling2Intervalle(float(value), 0, self.vitesseMax_avant, self.Android_Y_MiniWidth, self.Android_Y_MaxWidth)
                   self.vitesse.set(position, Motor.SENS_AVANT)
 
-               elif(int(value) < 0): # Marche Arriere
-                  position =  eqScaling2Intervalle(int(value), self.vitesseMax_arriere, 0, self.Android_Y_MiniWidth, self.Android_Y_MaxWidth)
+               elif(float(value) < 0): # Marche Arriere
+                  position =  eqScaling2Intervalle(float(value), self.vitesseMax_arriere, 0, self.Android_Y_MiniWidth, self.Android_Y_MaxWidth)
                   self.vitesse.set(position, Motor.SENS_ARIERRE)
 
                else: # Stop
